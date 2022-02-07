@@ -45,7 +45,7 @@ export default class Game extends Lightning.Component {
         this._index = 0;
 
         // Computer score
-        this._aiScore = 0;
+        this._aiScore = 1;
 
         // Player Score
         this._playerScore = 0;
@@ -192,20 +192,22 @@ export default class Game extends Lightning.Component {
                                 if (winner === "X") {
                                     this._playerScore += 1;
                                 } else {
-                                    this.aiScore += 1;
+                                    this._aiScore += 1;
                                 }
                                 this.patch({
                                     Game: {
                                         smooth: { alpha: 0 },
                                         ScoreBoard: {
                                             Player: { text: { text: `Player ${this._playerScore}` } },
-                                            Ai: { text: { text: `Computer ${this.aiScore}` } },
+                                            Ai: { text: { text: `Computer ${this._aiScore}` } },
+                                            
                                         }
                                     },
                                     Notification: {
                                         text: { text: `${winner === 'X' ? `Player` : `Computer`} wins(press enter to continue)` },
                                         smooth: { alpha: 1 }
-                                    }
+                                    },
+                                    
                                 });
                             }
                         },
